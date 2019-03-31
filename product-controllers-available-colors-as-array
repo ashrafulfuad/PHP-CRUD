@@ -21,7 +21,7 @@
         'product_price' => $request->product_price,
         'product_quantity' => $request->product_quantity,
         'alert_quantity' => $request->alert_quantity,
-        'available_colors' => $color_collection,       /////////// here///////////
+        'available_colors' => $color_collection,       ///////////   <-here this line   ///////////
         'created_at' => Carbon::now(),
       ]);
           if($request->hasFile('product_photo')){
