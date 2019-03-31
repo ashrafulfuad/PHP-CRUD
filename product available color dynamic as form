@@ -1,18 +1,7 @@
-	<div class="row">
-				<div class="col-lg-6">
-					<figure>
-						<img class="product-big-img" src="{{ asset('uploads/product_photos') }}/{{ $product_info->product_photo }}" alt="">
-					</figure>
-					<div class="product-thumbs">
-						<div class="product-thumbs-track">
-							<div class="pt" data-imgbigurl="img/product/1.jpg"><img src="{{ asset('uploads/product_photos') }}/{{ $product_info->product_photo }}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/2.jpg"><img src="{{ asset('uploads/product_photos') }}/{{ $product_info->product_photo }}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/3.jpg"><img src="{{ asset('uploads/product_photos') }}/{{ $product_info->product_photo }}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/4.jpg"><img src="{{ asset('uploads/product_photos') }}/{{ $product_info->product_photo }}" alt=""></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
+	<div class="col-lg-6">
+					<form action="{{ url('add/to/cart') }}" method="post">
+					@csrf
+					<input type="number" name="product_id" value="{{ $product_info->id }}">
 					<div class="product-content">
 						<h2>{{ $product_info->product_name }}</h2>
 						<div class="pc-meta">
@@ -37,7 +26,7 @@
 									$color_code = App\Color::find($available_color)->color_code;
 								@endphp
 								<div class="cs-item">
-									<input type="radio" name="cs" id="{{ $color_name }}-color" checked>
+									<input type="radio" value="{{ $available_color }}" name="cs" id="{{ $color_name }}-color" checked>
 									<label class="cs-{{ $color_name }}" for="{{ $color_name }}-color"></label>
 									<style media="screen">
 									.product-content .color-choose label.cs-{{ $color_name }} {
@@ -65,7 +54,7 @@
 								<label for="xxl-size">XXL</label>
 							</div>
 						</div>
-						<a href="#" class="site-btn btn-line">ADD TO CART</a>
+						<button type="submit" class="site-btn btn-line">ADD TO CART</button>
 					</div>
-				</div>
+				</form>
 			</div>
