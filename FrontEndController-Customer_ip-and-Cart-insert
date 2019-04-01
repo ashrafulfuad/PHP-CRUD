@@ -30,12 +30,19 @@ class FrontendController extends Controller
       $product_info = Product::findOrFail($product_id);
       return view('product/details', compact('product_info'));
     }
+    /////////////////////////////// start here ///////////////////////////////////
     function addtocart(Request $request)
     {
       $customer_ip = $_SERVER['REMOTE_ADDR'];
-      if (Cart::where('customer_ip', $customer_ip)->where('product_id', $request->product_id)->where('color_id', $request->color_id)->exists()) {
-        (Cart::where('customer_ip', $customer_ip)->where('product_id', $request->product_id)->increment('product_quantity'));
+      if (Cart::where('customer_ip', $customer_ip)
+      ->where('product_id', $request->product_id)
+      ->where('color_id', $request->color_id)
+      ->exists()) {
+        (Cart::where('customer_ip', $customer_ip)
+        ->where('product_id', $request->product_id)
+        ->increment('product_quantity'));
       }
+      /////////////////////////////// end here ///////////////////////////////////
       else {
       Cart::insert([
       'customer_ip' => $customer_ip,
