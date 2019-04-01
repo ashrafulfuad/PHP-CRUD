@@ -33,7 +33,7 @@ class FrontendController extends Controller
     function addtocart(Request $request)
     {
       $customer_ip = $_SERVER['REMOTE_ADDR'];
-      if (Cart::where('customer_ip', $customer_ip)->where('product_id', $request->product_id)->exists()) {
+      if (Cart::where('customer_ip', $customer_ip)->where('product_id', $request->product_id)->where('color_id', $request->color_id)->exists()) {
         (Cart::where('customer_ip', $customer_ip)->where('product_id', $request->product_id)->increment('product_quantity'));
       }
       else {
@@ -45,5 +45,11 @@ class FrontendController extends Controller
     ]);
     }
       return back();
+    }
+    function cartview()
+    {
+      $customer_ip = $_SERVER['REMOTE_ADDR'];
+      $cart_items = Cart::where('customer_ip', $customer_ip)->get();
+      return view('frontend/cart', compact('cart_items'));
     }
 }
