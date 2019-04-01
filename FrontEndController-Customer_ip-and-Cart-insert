@@ -42,7 +42,6 @@ class FrontendController extends Controller
         ->where('product_id', $request->product_id)
         ->increment('product_quantity'));
       }
-      /////////////////////////////// end here ///////////////////////////////////
       else {
       Cart::insert([
       'customer_ip' => $customer_ip,
@@ -53,6 +52,7 @@ class FrontendController extends Controller
     }
       return back();
     }
+    /////////////////////////////// end here ///////////////////////////////////
     function cartview()
     {
       $customer_ip = $_SERVER['REMOTE_ADDR'];
