@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     function addproductview()
     {
-      $deleted_products = Product::onlyTrashed('id')->get();
+      $deleted_products = Product::orderBy('deleted_at', 'desc')->onlyTrashed('id')->get();
       $products = Product::orderBy('id', 'desc')->paginate(5);
       return view('product/view', compact('products', 'deleted_products'));
     }
@@ -35,6 +35,19 @@ class ProductController extends Controller
     function productrestore($product_id)
     {
       Product::withTrashed()->findOrFail($product_id)->restore();
+      return back();
+    }
+    function productedit($product_id)
+    {
+      $product_edit = Product::findOrFail($product_id);
+      return view('product/edit', compact('product_edit'));
+    }
+    function producteditinsert(Request $request)
+    {
+      Product::findOrFail($request->product_id)->update([
+        'product_name' => $request->product_name,
+        'product_price' => $request->product_price,
+      ]);
       return back();
     }
 }
