@@ -1,0 +1,9 @@
+=> Download from Github     ->      composer create-project --prefer-dist laravel/laravel blog
+=> .env setting
+=> php artisan migrate      ->      after solving -1071- error to  ->   App\Providers\AppServiceProvider
+=> php artisan make:auth
+=> php artisan serve.......
+=> php artisan make:controller ProductController
+=> php artisan make:model Product -m     ->     after setting as name as input field
+=> php artisan migrate
+=> set the time zone in -> Config\App   ['Asia/Dhaka']
