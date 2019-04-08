@@ -21,7 +21,7 @@
             </div>
           @endif
 
-          <form action="{{ url('product/insert') }}" method="post">
+          <form action="{{ url('product/insert') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
               <label >Product Name</label>
@@ -30,6 +30,16 @@
             <div class="form-group">
               <label >Product Price</label>
               <input type="" name="product_price" class="form-control" value="{{ old('product_price') }}">
+            </div>
+            <div class="form-group form-control form-check form-check-inline">
+              @foreach ($all_colors as $color)
+                <label for="{{ $color->color_name }}" style="width:50px; height:50px; background:{{ $color->color_code }}"></label>
+                <input id="{{ $color->color_name }}" type="checkbox" name="color[]" class="form-control form" value="{{ $color->id }}" >
+              @endforeach
+            </div>
+            <div class="form-group">
+                <label for="">Product photo</label>
+                <input type="file" name="product_photo" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
           </form>
